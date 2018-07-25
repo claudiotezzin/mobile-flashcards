@@ -6,17 +6,8 @@ import {
   Platform,
   TouchableOpacity
 } from "react-native";
-import {
-  white,
-  black,
-  primary,
-  primary_light,
-  secondary_dark,
-  secondary,
-  primary_dark,
-  secondary_light,
-  red
-} from "../util/colors";
+import { white, primary, primary_dark, red } from "../util/colors";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 class Deck extends Component {
   render() {
@@ -27,7 +18,20 @@ class Deck extends Component {
         // onPress={() => this.props.navigation.navigate("DeckDatail")}
       >
         <Text style={styles.title}>Title</Text>
-        <Text style={styles.subTitle}>12 cards</Text>
+        <View
+          style={[
+            styles.cornerPosition,
+            { flexDirection: "row", alignItems: "center" }
+          ]}
+        >
+          <MaterialCommunityIcons
+            style={{ marginRight: 3 }}
+            name="cards"
+            size={20}
+            color={red}
+          />
+          <Text style={styles.subTitle}>12 cards</Text>
+        </View>
       </TouchableOpacity>
     );
   }
@@ -37,9 +41,9 @@ const styles = StyleSheet.create({
   item: {
     backgroundColor: white,
     borderRadius: Platform.OS === "ios" ? 16 : 8,
-    padding: 20,
-    marginLeft: 10,
-    marginRight: 10,
+    padding: 10,
+    marginLeft: 16,
+    marginRight: 16,
     marginTop: 17,
     justifyContent: "center",
     alignItems: "center",
@@ -61,6 +65,11 @@ const styles = StyleSheet.create({
   subTitle: {
     color: primary,
     fontSize: 14
+  },
+  cornerPosition: {
+    position: "absolute",
+    right: 10,
+    bottom: 10
   }
 });
 

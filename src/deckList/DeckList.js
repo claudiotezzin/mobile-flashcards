@@ -12,9 +12,13 @@ class DeckList extends Component {
         <PageTitle title={"Decks"} />
 
         <Deck />
+        <Deck />
+        <Deck />
+        <Deck />
 
         <ActionButton
           buttonColor={yellow}
+          elevation={8}
           fixNativeFeedbackRadius={true}
           onPress={() => {
             console.log("hi");

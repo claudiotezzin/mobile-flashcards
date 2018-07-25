@@ -7,13 +7,7 @@ import {
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Constants } from "expo";
-import {
-  white,
-  primary_dark,
-  primary,
-  black,
-  secondary
-} from "./src/util/colors";
+import { white, primary_dark, primary, black } from "./src/util/colors";
 import DeckList from "./src/deckList/DeckList";
 import DeckDatail from "./src/deckDetail/DeckDatail";
 import Profile from "./src/profile/Profile";
