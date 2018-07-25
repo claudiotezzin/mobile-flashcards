@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Platform, View } from "react-native";
+import { StyleSheet, Platform, View, FlatList, Text } from "react-native";
 import { yellow } from "../util/colors";
 import PageTitle from "../common/components/PageTitle";
 import ActionButton from "react-native-action-button";
@@ -11,10 +11,10 @@ class DeckList extends Component {
       <View style={{ flex: 1 }}>
         <PageTitle title={"Decks"} />
 
-        <Deck />
-        <Deck />
-        <Deck />
-        <Deck />
+        <FlatList
+          data={[{ key: "a" }, { key: "b" }, { key: "c" }, { key: "d" }]}
+          renderItem={({ item }) => <Deck key={item.key} />}
+        />
 
         <ActionButton
           buttonColor={yellow}

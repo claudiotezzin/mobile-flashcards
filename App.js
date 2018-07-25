@@ -45,26 +45,24 @@ const tabsConfig = {
   }
 };
 
-const tabBarOptions = {
-  activeTintColor: Platform.OS === "ios" ? primary_dark : white,
-  style: {
-    height: 56,
-    backgroundColor: Platform.OS === "ios" ? white : primary_dark,
-    shadowColor: "rgba(0, 0, 0, 0.24)",
-    shadowOffset: {
-      width: 0,
-      height: 3
-    },
-    shadowRadius: 6,
-    elevation: 6,
-    shadowOpacity: 1
-  }
-};
-
 const Tabs =
   Platform.OS === "ios"
     ? createBottomTabNavigator(tabsConfig, {
-        tabBarOptions
+        tabBarOptions: {
+          activeTintColor: primary,
+          style: {
+            height: 56,
+            backgroundColor: white,
+            shadowColor: "rgba(0, 0, 0, 0.24)",
+            shadowOffset: {
+              width: 0,
+              height: 3
+            },
+            shadowRadius: 6,
+            elevation: 6,
+            shadowOpacity: 1
+          }
+        }
       })
     : createMaterialBottomTabNavigator(tabsConfig, {
         initialRouteName: "DeckList",
