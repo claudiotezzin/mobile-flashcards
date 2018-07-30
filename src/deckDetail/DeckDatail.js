@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, Platform, View, Text } from "react-native";
 import { white, primary_dark } from "../util/colors";
-import PageTitle from "../common/components/PageTitle";
+import PageTitle from "../components/PageTitle";
 
 class DeckDetail extends Component {
   render() {

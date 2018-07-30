@@ -1,4 +1,7 @@
 import React from "react";
+import { createStore, applyMiddleware, combineReducers } from "redux";
+import { Provider } from "react-redux";
+import logger from "redux-logger";
 import { View, Platform, StatusBar } from "react-native";
 import {
   createBottomTabNavigator,
@@ -8,9 +11,10 @@ import { createMaterialBottomTabNavigator } from "react-navigation-material-bott
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Constants } from "expo";
 import { white, primary_dark, primary, black } from "./src/util/colors";
-import DeckList from "./src/deckList/DeckList";
 import DeckDatail from "./src/deckDetail/DeckDatail";
 import Profile from "./src/profile/Profile";
+import DeckList from "./src/containers/DeckList";
+import rootReducer from "./src/reducers";
 
 function AppStatusBar({ backgroundColor, ...props }) {
   return (
@@ -90,13 +94,18 @@ const MainNavigator = createStackNavigator({
   }
 });
 
+// const store = createStore(rootReducer, applyMiddleware(logger));
+const store = createStore(rootReducer);
+
 export default class App extends React.Component {
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <AppStatusBar backgroundColor={black} barStyle="light-content" />
-        <MainNavigator />
-      </View>
+      <Provider store={store}>
+        <View style={{ flex: 1 }}>
+          <AppStatusBar backgroundColor={black} barStyle="light-content" />
+          <MainNavigator />
+        </View>
+      </Provider>
     );
   }
 }

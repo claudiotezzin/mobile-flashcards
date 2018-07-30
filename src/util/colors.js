@@ -5,4 +5,5 @@ export const primary = "#455d7a";
 export const white = "#FAFAFA";
 export const black = "#2A2B2C";
 export const red = "#f95959";
+export const green = "#37ab2f";
 export const yellow = "#facf5a";

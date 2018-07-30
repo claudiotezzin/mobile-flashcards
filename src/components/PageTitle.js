@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View } from "react-native";
-import { white, primary } from "../../util/colors";
+import { white, primary } from "../util/colors";
 
 const PageTitle = ({ title }) => {
   return (
