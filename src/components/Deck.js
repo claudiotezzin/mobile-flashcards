@@ -36,14 +36,13 @@ class Deck extends Component {
   };
 
   render() {
-    const { title, numOfQuestions } = this.props;
+    const { title, numOfQuestions, navigation } = this.props;
 
     return (
       <TouchableOpacity
         activeOpacity={0.7}
         style={styles.item}
-        // onPress={() => this.props.navigation.navigate("DeckDatail")}
-        onPress={() => console.log("Open Deck")}
+        onPress={() => navigation.navigate("DeckDatail", { deckTitle: title })}
       >
         <TouchableOpacity
           activeOpacity={0.7}
@@ -123,7 +122,8 @@ const styles = StyleSheet.create({
 
 Deck.propTypes = {
   title: PropTypes.string.isRequired,
-  numOfQuestions: PropTypes.number.isRequired
+  numOfQuestions: PropTypes.number.isRequired,
+  navigation: PropTypes.object.isRequired
 };
 
 export default connect()(Deck);

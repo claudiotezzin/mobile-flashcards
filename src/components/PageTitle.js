@@ -7,6 +7,7 @@ const PageTitle = ({ title }) => {
     <View
       style={{
         alignItems: "center",
+        justifyContent: "center",
         backgroundColor: primary,
         height: 85
       }}
@@ -15,8 +16,7 @@ const PageTitle = ({ title }) => {
         style={{
           color: white,
           fontWeight: "bold",
-          fontSize: 25,
-          marginTop: 20
+          fontSize: 22
         }}
       >
         {title}

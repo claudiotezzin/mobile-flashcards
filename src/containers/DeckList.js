@@ -9,14 +9,7 @@ import {
   TouchableOpacity,
   TextInput
 } from "react-native";
-import {
-  yellow,
-  black,
-  white,
-  primary_dark,
-  primary,
-  green
-} from "../util/colors";
+import { yellow, white, primary_dark, primary, green } from "../util/colors";
 import PageTitle from "../components/PageTitle";
 import ActionButton from "react-native-action-button";
 import Deck from "../components/Deck";
@@ -85,6 +78,7 @@ class DeckList extends Component {
               numOfQuestions={
                 item.questions === undefined ? 0 : item.questions.length
               }
+              navigation={this.props.navigation}
             />
           )}
           keyExtractor={(_, index) => index.toString()}

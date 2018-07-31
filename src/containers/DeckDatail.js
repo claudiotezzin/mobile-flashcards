@@ -4,6 +4,15 @@ import { white, primary_dark } from "../util/colors";
 import PageTitle from "../components/PageTitle";
 
 class DeckDetail extends Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerTitle: navigation.getParam("deckTitle", "Selected deck title"),
+      headerTitleStyle: {
+        marginLeft: 60
+      }
+    };
+  };
+
   render() {
     return (
       <View style={{}}>
