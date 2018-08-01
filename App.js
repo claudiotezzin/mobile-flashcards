@@ -11,7 +11,7 @@ import { createMaterialBottomTabNavigator } from "react-navigation-material-bott
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Constants } from "expo";
 import { white, primary_dark, primary, black } from "./src/util/colors";
-import DeckDatail from "./src/containers/DeckDatail";
+import DeckDetail from "./src/containers/DeckDetail";
 import Profile from "./src/profile/Profile";
 import DeckList from "./src/containers/DeckList";
 import rootReducer from "./src/reducers";
@@ -82,8 +82,8 @@ const MainNavigator = createStackNavigator({
       header: null
     }
   },
-  DeckDatail: {
-    screen: DeckDatail,
+  DeckDetail: {
+    screen: DeckDetail,
     navigationOptions: {
       headerTintColor: white,
       // title: "Deck One",

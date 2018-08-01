@@ -7,7 +7,8 @@ import {
   FlatList,
   Text,
   TouchableOpacity,
-  TextInput
+  TextInput,
+  DeviceEventEmitter
 } from "react-native";
 import { yellow, white, primary_dark, primary, green } from "../util/colors";
 import PageTitle from "../components/PageTitle";
@@ -25,12 +26,20 @@ class DeckList extends Component {
   };
 
   componentDidMount() {
+    DeviceEventEmitter.addListener("state_listener", e => {
+      this._loadDecks();
+    });
+
+    this._loadDecks();
+  }
+
+  _loadDecks = () => {
     const { dispatch } = this.props;
 
     getDecks()
       .then(decks => dispatch(receiveDecks(decks)))
       .then(() => this.setState({ ready: true }));
-  }
+  };
 
   _toggleModal = () =>
     this.setState({

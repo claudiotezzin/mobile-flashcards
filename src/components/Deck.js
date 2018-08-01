@@ -42,7 +42,7 @@ class Deck extends Component {
       <TouchableOpacity
         activeOpacity={0.7}
         style={styles.item}
-        onPress={() => navigation.navigate("DeckDatail", { deckTitle: title })}
+        onPress={() => navigation.navigate("DeckDetail", { deckTitle: title })}
       >
         <TouchableOpacity
           activeOpacity={0.7}

@@ -7,7 +7,8 @@ import {
   Text,
   FlatList,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  DeviceEventEmitter
 } from "react-native";
 import Modal from "react-native-modal";
 import ActionButton from "react-native-action-button";
@@ -70,7 +71,9 @@ class DeckDetail extends Component {
 
     if (card.question !== "" && card.answer !== "") {
       dispatch(addCard(card));
-      saveCardToDeck(deckTitle, card);
+      saveCardToDeck(deckTitle, card).then(() => {
+        DeviceEventEmitter.emit("state_listener", {});
+      });
     }
 
     this._toggleModal();

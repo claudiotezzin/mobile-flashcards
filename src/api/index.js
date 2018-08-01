@@ -11,16 +11,17 @@ export function getDecks() {
 
 // Dado um único argumento id, ele retorna o baralho associado àquele id.
 export function getDeck(title) {
-  return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
-    .then(formatDeckResult)
-    .then(result => result[title]);
+  return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY).then(result => {
+    const data = JSON.parse(result);
+    return data[title];
+  });
 }
 
 // Dado um único argumento title, ele adiciona-o aos baralhos.
 export function saveDeck(title) {
   return AsyncStorage.mergeItem(
     FLASHCARDS_STORAGE_KEY,
-    JSON.stringify({ [title]: { title } })
+    JSON.stringify({ [title]: { title, questions: [] } })
   );
 }
 
