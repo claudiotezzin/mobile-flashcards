@@ -5,11 +5,6 @@ const receiveDecks = decks => ({
   decks
 });
 
-const getDeck = deck => ({
-  type: types.GET_DECK,
-  deck
-});
-
 const addDeck = title => ({
   type: types.ADD_DECK,
   title
@@ -20,4 +15,4 @@ const deleteDeck = title => ({
   title
 });
 
-export { receiveDecks, getDeck, addDeck, deleteDeck };
+export { receiveDecks, addDeck, deleteDeck };

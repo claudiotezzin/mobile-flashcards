@@ -1,11 +1,18 @@
-const RECEIVE_DECKS = "flashcards/duck/RECEIVE_DECKS";
-const GET_DECK = "flashcards/duck/GET_DECK";
-const ADD_DECK = "flashcards/duck/ADD_DECK";
-const DELETE_DECK = "flashcards/duck/DELETE_DECK";
+// DECK
+const RECEIVE_DECKS = "flashcards/RECEIVE_DECKS";
+const ADD_DECK = "flashcards/ADD_DECK";
+const DELETE_DECK = "flashcards/DELETE_DECK";
+
+// CARD
+const RECEIVE_CARDS = "flashcards/RECEIVE_CARDS";
+const ADD_CARD = "flashcards/ADD_CARD";
+const DELETE_CARD = "flashcards/DELETE_CARD";
 
 export default {
   RECEIVE_DECKS,
-  GET_DECK,
   ADD_DECK,
-  DELETE_DECK
+  DELETE_DECK,
+  RECEIVE_CARDS,
+  ADD_CARD,
+  DELETE_CARD
 };

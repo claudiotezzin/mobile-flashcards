@@ -1,19 +1,19 @@
 import { AsyncStorage } from "react-native";
+import { formatDeckResult } from "../util/helper";
 
-const FLASHCARDS_STORAGE_KEY = "FlashCards:storageData";
+export const FLASHCARDS_STORAGE_KEY = "FlashCards:storageData";
 
 // Retorna todos os baralhos com seus títulos, perguntas, e respostas.
 export function getDecks() {
-  return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY).then(data =>
-    JSON.parse(data)
-  );
+  // AsyncStorage.removeItem(FLASHCARDS_STORAGE_KEY);
+  return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY).then(formatDeckResult);
 }
 
 // Dado um único argumento id, ele retorna o baralho associado àquele id.
 export function getDeck(title) {
-  return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY).then(result => {
-    return result[title];
-  });
+  return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
+    .then(formatDeckResult)
+    .then(result => result[title]);
 }
 
 // Dado um único argumento title, ele adiciona-o aos baralhos.
@@ -26,14 +26,12 @@ export function saveDeck(title) {
 
 // Dado dois argumentos, title e card, ele adiciona o cartão à lista de perguntas ao baralho com o título associado.
 export function saveCardToDeck(title, card) {
-  return AsyncStorage.setItem(
-    FLASHCARDS_STORAGE_KEY,
-    JSON.stringify({ [title]: { questions: [card] } })
-  ).then(() => {
-    AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY).then(res => {
-      const data = JSON.parse(result);
-      console.log("DEBUG", "The data saved is: " + data);
-    });
+  return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY).then(result => {
+    let data = JSON.parse(result);
+    const arr = data[title].questions.concat([card]);
+    data[title].questions = arr;
+
+    return AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(data));
   });
 }
 

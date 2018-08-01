@@ -12,14 +12,6 @@ const decks = (state = {}, action) => {
 
       return newState;
     }
-    case types.GET_DECK: {
-      const { deck } = action;
-
-      return {
-        ...state,
-        ...deck
-      };
-    }
     case types.ADD_DECK: {
       const { title } = action;
 

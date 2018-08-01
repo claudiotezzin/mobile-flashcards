@@ -28,11 +28,8 @@ class DeckList extends Component {
     const { dispatch } = this.props;
 
     getDecks()
-      .then(decks => {
-        return dispatch(receiveDecks(decks));
-      })
-      .then(() => this.setState({ ready: true }))
-      .catch(() => {});
+      .then(decks => dispatch(receiveDecks(decks)))
+      .then(() => this.setState({ ready: true }));
   }
 
   _toggleModal = () =>
@@ -111,7 +108,7 @@ class DeckList extends Component {
               />
             </View>
             <TouchableOpacity onPress={this._createDeck}>
-              <Text style={styles.submitButton}>SUBMIT</Text>
+              <Text style={styles.submitButton}>CREATE</Text>
             </TouchableOpacity>
           </View>
         </Modal>
