@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Platform, View, FlatList, DeviceEventEmitter } from "react-native";
+import { Platform, View, FlatList, ActivityIndicator } from "react-native";
 import { yellow } from "../util/colors";
 import PageTitle from "../components/PageTitle";
 import ActionButton from "react-native-action-button";
@@ -23,6 +23,10 @@ class DeckList extends Component {
 
   render() {
     const { decks, navigation } = this.props;
+
+    if (!this.state.ready) {
+      return <ActivityIndicator style={{ marginTop: 30 }} />;
+    }
 
     return (
       <View style={{ flex: 1 }}>

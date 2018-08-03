@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { StyleSheet, Platform, View, Text } from "react-native";
+import {
+  StyleSheet,
+  Platform,
+  View,
+  Text,
+  ActivityIndicator
+} from "react-native";
 import ActionButton from "react-native-action-button";
 import { white, red, green, yellow, primary } from "../util/colors";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
@@ -46,6 +52,10 @@ class DeckDetail extends Component {
 
   render() {
     const { deck } = this.props;
+
+    if (!this.state.ready) {
+      return <ActivityIndicator style={{ marginTop: 30 }} />;
+    }
 
     return (
       <View style={styles.container}>

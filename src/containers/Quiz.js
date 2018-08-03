@@ -85,10 +85,25 @@ class Quiz extends Component {
             </Text>
             <View style={styles.buttonsContainer}>
               <TouchableOpacity
+                style={[styles.button, { backgroundColor: white }]}
+                onPress={() =>
+                  this.setState({
+                    isShowingAnswer: false,
+                    currentQuestionIndex: 1,
+                    correctAnswersCount: 0
+                  })
+                }
+              >
+                <Text style={[styles.buttonLabel, { color: black }]}>
+                  Restart Quiz
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
                 style={[styles.button, { backgroundColor: black }]}
                 onPress={() => navigation.goBack()}
               >
-                <Text style={styles.buttonLabel}>FINISH</Text>
+                <Text style={styles.buttonLabel}>Back To Deck</Text>
               </TouchableOpacity>
             </View>
           </View>
