@@ -6,33 +6,30 @@ import {
   Text,
   StyleSheet,
   Platform,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from "react-native";
 import { white, primary, primary_dark, red, black } from "../util/colors";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import ConfirmationDialog from "./ConfirmationDialog";
 import { deleteDeck } from "../actions";
 import { deleteDeck as APIDeleteDeck } from "../api";
 
 class Deck extends Component {
-  state = {
-    isModalVisible: false
-  };
-
   deleteDeck = () => {
     const { title, dispatch } = this.props;
 
     dispatch(deleteDeck(title));
 
     APIDeleteDeck(title);
-
-    this.onToggleDeleteDeckModel();
   };
 
-  onToggleDeleteDeckModel = () => {
-    this.setState(prevState => {
-      return { isModalVisible: !prevState.isModalVisible };
-    });
+  onDeleteDeck = () => {
+    Alert.alert(
+      "Delete Deck",
+      "Are you sure you want to delete this Deck???",
+      [{ text: "Delete", onPress: this.deleteDeck }, { text: "Cancel" }],
+      { cancelable: true }
+    );
   };
 
   render() {
@@ -47,7 +44,7 @@ class Deck extends Component {
         <TouchableOpacity
           activeOpacity={0.7}
           style={styles.cornerUpPosition}
-          onPress={this.onToggleDeleteDeckModel}
+          onPress={this.onDeleteDeck}
         >
           <MaterialCommunityIcons name="close" size={25} color={black} />
         </TouchableOpacity>
@@ -61,13 +58,6 @@ class Deck extends Component {
           />
           <Text style={styles.subTitle}>{numOfQuestions} cards</Text>
         </View>
-
-        <ConfirmationDialog
-          question="Are you sure you want to delete this Deck???"
-          isVisible={this.state.isModalVisible}
-          onToggle={this.onToggleDeleteDeckModel}
-          onActionConfirmation={this.deleteDeck}
-        />
       </TouchableOpacity>
     );
   }

@@ -6,7 +6,6 @@ const decks = (state = {}, action) => {
       const { decks } = action;
 
       return {
-        ...state,
         ...decks
       };
     }
@@ -34,6 +33,16 @@ const decks = (state = {}, action) => {
       delete stateData[title];
 
       return stateData;
+    }
+    case types.SAVE_CARD: {
+      const { card, title } = action;
+
+      const arr = state[title].questions.concat([card]);
+
+      return {
+        ...state,
+        [title]: { title, questions: arr }
+      };
     }
     default:
       return state;

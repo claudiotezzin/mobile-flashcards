@@ -11,7 +11,7 @@ import {
 import CardFlip from "react-native-card-flip";
 import { white, black, green, red, primary } from "../util/colors";
 import { getDeck } from "../api";
-import { receiveCards } from "../actions";
+import { receiveSingleDeck } from "../actions";
 import { shuffle } from "../util/helper";
 
 class Quiz extends Component {
@@ -28,8 +28,7 @@ class Quiz extends Component {
 
     getDeck(title)
       .then(deck => {
-        const { questions } = deck;
-        return dispatch(receiveCards(questions));
+        return dispatch(receiveSingleDeck(deck));
       })
       .then(() => this.setState({ ready: true }));
   }
@@ -298,9 +297,11 @@ const styles = StyleSheet.create({
   }
 });
 
-function mapStateToProps({ cards }) {
+function mapStateToProps({ decks }, ownProps) {
+  const { navigation } = ownProps;
+
   return {
-    cards: shuffle(cards)
+    cards: decks[navigation.state.params.deckTitle].questions
   };
 }
 

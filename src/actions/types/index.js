@@ -6,7 +6,7 @@ const DELETE_DECK = "flashcards/DELETE_DECK";
 
 // CARD
 const RECEIVE_CARDS = "flashcards/RECEIVE_CARDS";
-const ADD_CARD = "flashcards/ADD_CARD";
+const SAVE_CARD = "flashcards/SAVE_CARD";
 
 export default {
   RECEIVE_DECKS,
@@ -14,5 +14,5 @@ export default {
   ADD_DECK,
   DELETE_DECK,
   RECEIVE_CARDS,
-  ADD_CARD
+  SAVE_CARD
 };

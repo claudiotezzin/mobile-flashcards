@@ -5,7 +5,6 @@ export const FLASHCARDS_STORAGE_KEY = "FlashCards:storageData";
 
 // Retorna todos os baralhos com seus títulos, perguntas, e respostas.
 export function getDecks() {
-  // AsyncStorage.removeItem(FLASHCARDS_STORAGE_KEY);
   return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY).then(formatDeckResult);
 }
 
@@ -48,4 +47,10 @@ export function deleteDeck(title) {
     .then(() => {
       return title;
     });
+}
+
+export function resetDecks() {
+  return AsyncStorage.removeItem(FLASHCARDS_STORAGE_KEY).then(() => {
+    return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY).then(formatDeckResult);
+  });
 }

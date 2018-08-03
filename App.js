@@ -1,7 +1,6 @@
 import React from "react";
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { Provider } from "react-redux";
-import logger from "redux-logger";
 import { View, Platform, StatusBar } from "react-native";
 import {
   createBottomTabNavigator,
@@ -12,9 +11,11 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Constants } from "expo";
 import { white, primary_dark, primary, black } from "./src/util/colors";
 import DeckDetail from "./src/containers/DeckDetail";
-import Profile from "./src/profile/Profile";
+import Settings from "./src/containers/Settings";
 import DeckList from "./src/containers/DeckList";
 import Quiz from "./src/containers/Quiz";
+import CreateDeck from "./src/containers/CreateDeck";
+import CreateCard from "./src/containers/CreateCard";
 import rootReducer from "./src/reducers";
 
 function AppStatusBar({ backgroundColor, ...props }) {
@@ -35,16 +36,12 @@ const tabsConfig = {
       )
     }
   },
-  Profile: {
-    screen: Profile,
+  Settings: {
+    screen: Settings,
     navigationOptions: {
-      tabBarLabel: "Profile",
+      tabBarLabel: "Settings",
       tabBarIcon: ({ tintColor }) => (
-        <MaterialCommunityIcons
-          name="account-settings-variant"
-          size={30}
-          color={tintColor}
-        />
+        <MaterialCommunityIcons name="settings" size={25} color={tintColor} />
       )
     }
   }
@@ -92,6 +89,32 @@ const MainNavigator = createStackNavigator({
       }
     }
   },
+  CreateDeck: {
+    screen: CreateDeck,
+    navigationOptions: {
+      headerTitle: "Create Deck",
+      headerTitleStyle: {
+        marginLeft: 60
+      },
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: primary
+      }
+    }
+  },
+  CreateCard: {
+    screen: CreateCard,
+    navigationOptions: {
+      headerTitle: "Create Card",
+      headerTitleStyle: {
+        marginLeft: 60
+      },
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: primary
+      }
+    }
+  },
   Quiz: {
     screen: Quiz,
     navigationOptions: {
@@ -107,7 +130,6 @@ const MainNavigator = createStackNavigator({
   }
 });
 
-// const store = createStore(rootReducer, applyMiddleware(logger));
 const store = createStore(rootReducer);
 
 export default class App extends React.Component {
