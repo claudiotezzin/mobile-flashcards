@@ -24,6 +24,7 @@
     "react-native": "~0.55.2",
     "react-native-action-button": "^2.8.4",
     "react-native-appstate-listener": "^1.0.0",
+    "react-native-card-flip": "^1.0.3",
     "react-native-modal": "^6.5.0",
     "react-native-textinput-effects": "^0.4.2",
     "react-navigation": "^2.9.0",

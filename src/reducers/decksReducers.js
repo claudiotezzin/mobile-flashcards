@@ -5,19 +5,25 @@ const decks = (state = {}, action) => {
     case types.RECEIVE_DECKS: {
       const { decks } = action;
 
-      const newState = {
+      return {
         ...state,
         ...decks
       };
+    }
+    case types.RECEIVE_SINGLE_DECK: {
+      const { deck } = action;
 
-      return newState;
+      return {
+        ...state,
+        [deck.title]: deck
+      };
     }
     case types.ADD_DECK: {
       const { title } = action;
 
       return {
         ...state,
-        [title]: { title }
+        [title]: { title, questions: [] }
       };
     }
     case types.DELETE_DECK: {

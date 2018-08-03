@@ -13,15 +13,6 @@ const cards = (state = {}, action) => {
 
       return [...state, card];
     }
-    case types.DELETE_CARD: {
-      const { pos } = action;
-
-      //   let stateData = { ...state };
-      //   stateData[title] = undefined;
-      //   delete stateData[title];
-
-      return state;
-    }
     default:
       return state;
   }

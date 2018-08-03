@@ -5,7 +5,6 @@ import {
   Platform,
   View,
   Text,
-  FlatList,
   TextInput,
   TouchableOpacity,
   DeviceEventEmitter
@@ -20,8 +19,8 @@ import {
   primary_dark,
   primary
 } from "../util/colors";
-import { Ionicons } from "@expo/vector-icons";
-import { receiveCards, addCard } from "../actions";
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { receiveSingleDeck, addCard } from "../actions";
 import { getDeck, saveCardToDeck } from "../api";
 
 class DeckDetail extends Component {
@@ -49,8 +48,7 @@ class DeckDetail extends Component {
 
     getDeck(title)
       .then(deck => {
-        const { questions } = deck;
-        return dispatch(receiveCards(questions));
+        return dispatch(receiveSingleDeck(deck));
       })
       .then(() => this.setState({ ready: true }));
   }
@@ -79,16 +77,47 @@ class DeckDetail extends Component {
     this._toggleModal();
   };
 
+  _startQuiz = () => {
+    const { navigation, deck } = this.props;
+
+    navigation.navigate("Quiz", { deckTitle: deck.title });
+  };
+
   render() {
-    const { cards } = this.props;
+    const { deck } = this.props;
 
     return (
-      <View style={{ flex: 1 }}>
-        <FlatList
-          data={cards}
-          renderItem={({ item }) => <Text>{item.question}</Text>}
-          keyExtractor={(_, index) => index.toString()}
-        />
+      <View style={styles.container}>
+        <View style={styles.item}>
+          <Text
+            style={{
+              color: primary,
+              fontSize: 32,
+              fontWeight: "bold"
+            }}
+          >
+            {deck.title}
+          </Text>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              alignContent: "center",
+              height: "80%"
+            }}
+          >
+            <MaterialCommunityIcons
+              style={{ marginRight: 8 }}
+              name="cards"
+              size={40}
+              color={red}
+            />
+            <Text style={{ fontSize: 20, marginTop: 6 }}>
+              {deck.questions.length} cards
+            </Text>
+          </View>
+        </View>
 
         <Modal
           isVisible={this.state.isCreateCardModalVisible}
@@ -144,14 +173,21 @@ class DeckDetail extends Component {
           </View>
         </Modal>
 
-        <ActionButton buttonColor={red}>
-          <ActionButton.Item
-            buttonColor={green}
-            title="Start Quiz"
-            onPress={() => console.log("Start Quiz tapped!")}
-          >
-            <Ionicons name="md-play" style={styles.actionButtonIcon} />
-          </ActionButton.Item>
+        <ActionButton
+          elevation={8}
+          fixNativeFeedbackRadius={true}
+          buttonColor={red}
+          size={Platform.OS === "ios" ? 46 : 56}
+        >
+          {deck.questions.length > 0 && (
+            <ActionButton.Item
+              buttonColor={green}
+              title="Start Quiz"
+              onPress={this._startQuiz}
+            >
+              <Ionicons name="md-play" style={styles.actionButtonIcon} />
+            </ActionButton.Item>
+          )}
           <ActionButton.Item
             buttonColor={yellow}
             title="Add Card"
@@ -166,14 +202,18 @@ class DeckDetail extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  },
   item: {
     backgroundColor: white,
+    alignItems: "center",
     borderRadius: Platform.OS === "ios" ? 16 : 8,
-    padding: 20,
-    marginLeft: 10,
-    marginRight: 10,
-    marginTop: 17,
-    justifyContent: "center",
+    padding: 30,
+    width: 340,
+    height: 490,
     shadowRadius: 3,
     shadowOpacity: 0.8,
     elevation: 6,
@@ -213,11 +253,11 @@ const styles = StyleSheet.create({
   }
 });
 
-function mapStateToProps({ cards }) {
-  // console.log("DEBUG", "cards: " + JSON.stringify(cards));
+function mapStateToProps({ decks }, ownProps) {
+  const { navigation } = ownProps;
 
   return {
-    cards: cards
+    deck: decks[navigation.state.params.deckTitle]
   };
 }
 

@@ -14,6 +14,7 @@ import { white, primary_dark, primary, black } from "./src/util/colors";
 import DeckDetail from "./src/containers/DeckDetail";
 import Profile from "./src/profile/Profile";
 import DeckList from "./src/containers/DeckList";
+import Quiz from "./src/containers/Quiz";
 import rootReducer from "./src/reducers";
 
 function AppStatusBar({ backgroundColor, ...props }) {
@@ -86,7 +87,19 @@ const MainNavigator = createStackNavigator({
     screen: DeckDetail,
     navigationOptions: {
       headerTintColor: white,
-      // title: "Deck One",
+      headerStyle: {
+        backgroundColor: primary
+      }
+    }
+  },
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: {
+      headerTitle: "Quiz",
+      headerTitleStyle: {
+        marginLeft: 60
+      },
+      headerTintColor: white,
       headerStyle: {
         backgroundColor: primary
       }

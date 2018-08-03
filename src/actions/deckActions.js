@@ -5,6 +5,11 @@ const receiveDecks = decks => ({
   decks
 });
 
+const receiveSingleDeck = deck => ({
+  type: types.RECEIVE_SINGLE_DECK,
+  deck
+});
+
 const addDeck = title => ({
   type: types.ADD_DECK,
   title
@@ -15,4 +20,4 @@ const deleteDeck = title => ({
   title
 });
 
-export { receiveDecks, addDeck, deleteDeck };
+export { receiveDecks, receiveSingleDeck, addDeck, deleteDeck };

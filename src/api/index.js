@@ -49,13 +49,3 @@ export function deleteDeck(title) {
       return title;
     });
 }
-
-// Dado dois argumentos, title e cardPos (posição), ele deleta a carta especifica
-export function deleteCard(title, cardPos) {
-  return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY).then(result => {
-    const data = JSON.parse(result);
-    data[title][cardPos] = undefined;
-    delete data[title][cardPos];
-    AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(data));
-  });
-}

@@ -10,9 +10,4 @@ const addCard = card => ({
   card
 });
 
-const deleteCard = pos => ({
-  type: types.DELETE_CARD,
-  pos
-});
-
-export { receiveCards, addCard, deleteCard };
+export { receiveCards, addCard };
