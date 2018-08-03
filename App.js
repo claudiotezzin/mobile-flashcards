@@ -17,6 +17,7 @@ import Quiz from "./src/containers/Quiz";
 import CreateDeck from "./src/containers/CreateDeck";
 import CreateCard from "./src/containers/CreateCard";
 import rootReducer from "./src/reducers";
+import { setLocalNotification } from "./src/util/helper";
 
 function AppStatusBar({ backgroundColor, ...props }) {
   return (
@@ -94,7 +95,7 @@ const MainNavigator = createStackNavigator({
     navigationOptions: {
       headerTitle: "Create Deck",
       headerTitleStyle: {
-        marginLeft: 60
+        marginLeft: Platform.OS === "ios" ? 0 : 60
       },
       headerTintColor: white,
       headerStyle: {
@@ -107,7 +108,7 @@ const MainNavigator = createStackNavigator({
     navigationOptions: {
       headerTitle: "Create Card",
       headerTitleStyle: {
-        marginLeft: 60
+        marginLeft: Platform.OS === "ios" ? 0 : 60
       },
       headerTintColor: white,
       headerStyle: {
@@ -120,7 +121,7 @@ const MainNavigator = createStackNavigator({
     navigationOptions: {
       headerTitle: "Quiz",
       headerTitleStyle: {
-        marginLeft: 60
+        marginLeft: Platform.OS === "ios" ? 0 : 60
       },
       headerTintColor: white,
       headerStyle: {
@@ -133,6 +134,10 @@ const MainNavigator = createStackNavigator({
 const store = createStore(rootReducer);
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
+
   render() {
     return (
       <Provider store={store}>

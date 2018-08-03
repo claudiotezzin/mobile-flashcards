@@ -1,5 +1,20 @@
 {
   "expo": {
-    "sdkVersion": "27.0.0"
+    "sdkVersion": "27.0.0",
+    "orientation": "portrait",
+    "name": "FlashCards",
+    "description": "The best way of learning something.",
+    "slug": "flashcards",
+    "version": "1.0",
+    "icon": "https://png.icons8.com/dusk/96/8e969a/cards.png",
+    "notification": {
+      "icon": "https://png.icons8.com/ios-glyphs/96/8e969a/cards.png"
+    },
+    "ios": {
+      "bundleIdentifier": "com.tezzin.flashcards"
+    },
+    "android": {
+      "package": "com.tezzin.flashcards"
+    }
   }
 }

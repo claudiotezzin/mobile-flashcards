@@ -18,7 +18,7 @@ class DeckDetail extends Component {
     return {
       headerTitle: navigation.getParam("deckTitle", "Selected deck title"),
       headerTitleStyle: {
-        marginLeft: 60
+        marginLeft: Platform.OS === "ios" ? 0 : 60
       }
     };
   };

@@ -12,7 +12,11 @@ import CardFlip from "react-native-card-flip";
 import { white, black, green, red, primary } from "../util/colors";
 import { getDeck } from "../api";
 import { receiveSingleDeck } from "../actions";
-import { shuffle } from "../util/helper";
+import {
+  shuffle,
+  clearLocalNotification,
+  setLocalNotification
+} from "../util/helper";
 
 class Quiz extends Component {
   state = {
@@ -25,6 +29,9 @@ class Quiz extends Component {
   componentDidMount() {
     const { dispatch, navigation } = this.props;
     const title = navigation.state.params.deckTitle;
+
+    //Reset notification
+    clearLocalNotification().then(setLocalNotification);
 
     getDeck(title)
       .then(deck => {
@@ -302,7 +309,6 @@ const styles = StyleSheet.create({
   button: {
     justifyContent: "center",
     alignItems: "center",
-    padding: 20,
     height: 60
   },
   buttonLabel: {
