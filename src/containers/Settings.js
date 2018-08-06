@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { View, Text, TouchableOpacity, Alert } from "react-native";
+import { View, Text, TouchableOpacity, Alert, StyleSheet } from "react-native";
 import PageTitle from "../components/PageTitle";
 import { black, white } from "../util/colors";
 import { resetDecks } from "../api";
@@ -29,20 +29,25 @@ class Settings extends Component {
       <View style={{ flex: 1 }}>
         <PageTitle title={"Settings"} />
 
-        <TouchableOpacity
-          style={{
-            backgroundColor: black,
-            padding: 30,
-            margin: 40,
-            justifyContent: "center",
-            alignItems: "center"
-          }}
-          onPress={this._onClearData}
-        >
-          <Text style={{ color: white, fontSize: 20 }}>Reset Decks Data</Text>
+        <TouchableOpacity style={styles.button} onPress={this._onClearData}>
+          <Text style={styles.buttonText}>Reset Decks Data</Text>
         </TouchableOpacity>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  button: {
+    backgroundColor: black,
+    padding: 30,
+    margin: 40,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  buttonText: {
+    color: white,
+    fontSize: 20
+  }
+});
 export default connect()(Settings);

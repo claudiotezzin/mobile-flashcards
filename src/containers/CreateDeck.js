@@ -24,18 +24,15 @@ class CreateDeck extends Component {
     if (deckName !== "") {
       dispatch(addDeck(deckName));
 
-      saveDeck(deckName)
-        .then(() => {
-          console.log("DeckList", "Deck cretaed!");
-        })
-        .catch(err => {
-          console.log(
-            "DeckList",
-            "Deck creation error: " + JSON.stringify(err)
-          );
-        });
+      saveDeck(deckName);
 
-      navigation.goBack();
+      // navigation.goBack();
+      navigation.dispatch({
+        type: "KillCurrentScreen",
+        routeName: "DeckDetail",
+        params: { deckTitle: deckName },
+        key: "DeckDetail"
+      });
     } else {
       Alert.alert("Ops!!!", "You need to type a deck name!", [{ text: "OK" }], {
         cancelable: true
